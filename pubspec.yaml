@@ -1,0 +1,37 @@
+name: belik_coin
+description: The application allows to receive real time market data and historical price charts for different crypto currencies.
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.16.2 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  web_socket_channel: ^2.2.0
+  cupertino_icons: ^1.0.2
+  flutter_bloc: ^8.0.1
+  equatable: ^2.0.3
+  retrofit: 3.0.1+1
+  get_it: 7.2.0
+  json_annotation: ^4.4.0
+  #intl: ^0.17.0
+  fl_chart: ^0.50.6
+  charts_flutter: ^0.12.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^1.0.0
+  retrofit_generator: 4.0.1
+  build_runner: 2.1.7
+  json_serializable: 6.1.5
+
+flutter:
+  uses-material-design: true
+  generate: true

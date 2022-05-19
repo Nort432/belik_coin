@@ -1,5 +1,6 @@
-import 'package:belik_coin/src/features/coin_details/presentation/page/coin_details.dart';
 import 'package:flutter/material.dart';
+
+import '../../features/coin_details/presentation/page/coin_details_page.dart';
 
 class AppRoutes {
   static const String startPage = '/';
@@ -8,10 +9,10 @@ class AppRoutes {
     return (RouteSettings routeSettings) {
       switch (routeSettings.name) {
         case startPage:
-          return _buildRoute(routeSettings, const CoinDetails());
+          return _buildRoute(routeSettings, const CoinDetailsPage());
 
         default:
-          return _buildRoute(routeSettings, const CoinDetails());
+          return _buildRoute(routeSettings, const CoinDetailsPage());
       }
     };
   }

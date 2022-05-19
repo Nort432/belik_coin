@@ -1,13 +1,16 @@
+import 'package:belik_coin/src/features/coin_details/domain/entities/price_history_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
 import '../widgets/price_chart_history_widget.dart';
 import '../widgets/price_chart.dart';
 
-class CoinDetails extends StatelessWidget {
-  const CoinDetails({Key? key}) : super(key: key);
+class CoinDetailsBody extends StatelessWidget {
+  const CoinDetailsBody({
+    required this.priceHistoryEntities,
+    Key? key}) : super(key: key);
 
-
+  final List<PriceHistoryEntity> priceHistoryEntities;
 
   @override
   Widget build(BuildContext context) {

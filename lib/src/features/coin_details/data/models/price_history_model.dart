@@ -13,7 +13,7 @@ class PriceHistoryModel extends PriceHistoryEntity {
           rateClose: rateClose,
         );
 
-  factory PriceHistoryModel.from(Map<String, dynamic> json) =>
+  factory PriceHistoryModel.fromJson(Map<String, dynamic> json) =>
       _$PriceHistoryModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$PriceHistoryModelToJson(this);

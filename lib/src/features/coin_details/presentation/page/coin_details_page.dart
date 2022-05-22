@@ -30,7 +30,8 @@ class CoinDetailsPage extends StatelessWidget {
 
         if (state is CoinDetailsLoaded) {
           return CoinDetailsBody(
-            priceHistoryEntities: state.priceHistoryEntities,
+            dataChart: state.dataChart,
+            stream: state.stream,
           );
         }
 

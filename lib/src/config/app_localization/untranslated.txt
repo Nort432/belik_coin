@@ -1,1 +1,7 @@
-{}
+{
+  "uk": [
+    "symbol",
+    "price",
+    "time"
+  ]
+}

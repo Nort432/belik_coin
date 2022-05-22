@@ -12,3 +12,16 @@ class CoinDetailsFetchCoin extends CoinDetailsEvent {
   @override
   List<Object?> get props => [coinName];
 }
+
+class CoinDetailsFetchCoinTrade extends CoinDetailsEvent {
+  const CoinDetailsFetchCoinTrade({
+    required this.coinName,
+    required this.dataChart,
+  });
+
+  final String coinName;
+  final List<Series<PriceHistoryEntity, DateTime>> dataChart;
+
+  @override
+  List<Object?> get props => [coinName, dataChart];
+}

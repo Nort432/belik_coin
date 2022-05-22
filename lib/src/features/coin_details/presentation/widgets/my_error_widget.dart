@@ -8,8 +8,11 @@ class MyErrorWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Text(errorMessage),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Text(errorMessage)),
+        ),
       ),
     );
   }

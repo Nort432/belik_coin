@@ -1,3 +1,6 @@
 {
-  "coinDetails": "Coin Details"
+  "coinDetails": "Coin Details",
+  "symbol": "Symbol",
+  "price": "Price",
+  "time": "Time"
 }

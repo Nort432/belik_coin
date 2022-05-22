@@ -7,15 +7,18 @@ class ApiCoinDetails {
   static const String pathAssetIdBase = 'pathAssetIdBase';
   static const String pathAssetIdQuote = 'pathAssetIdQuote';
 
-  static const String queryPeriodId = 'queryPeriodId';
-  static const String queryTimeStart = 'queryTimeStart';
-  static const String queryTimeEnd = 'queryTimeEnd';
+  static const String queryPeriodId = 'period_id';
+  static const String queryTimeStart = 'time_start';
+  static const String queryTimeEnd = 'time_end';
 
   static const String urlCoin =
-      '/v1/exchangerate/$pathAssetIdBase/$pathAssetIdQuote';
+      '/v1/exchangerate/{$pathAssetIdBase}/{$pathAssetIdQuote}';
 
   static const String urlPriceHistory =
-      '/v1/exchangerate/$pathAssetIdBase/$pathAssetIdQuote'
-      '/history?period_id=$queryPeriodId'
-      '&time_start=$queryTimeStart&time_end=$queryTimeEnd';
+      '/v1/exchangerate/{$pathAssetIdBase}/{$pathAssetIdQuote}/history';
+
+// static const String urlPriceHistory =
+//     '/v1/exchangerate/$pathAssetIdBase/$pathAssetIdQuote'
+//     '/history?period_id=$queryPeriodId'
+//     '&time_start=$queryTimeStart&time_end=$queryTimeEnd';
 }

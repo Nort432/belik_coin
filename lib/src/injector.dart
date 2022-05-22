@@ -1,4 +1,6 @@
+import 'package:belik_coin/src/features/coin_details/data/repo/coin_details_repo_impl.dart';
 import 'package:belik_coin/src/features/coin_details/data/sources/remote/coin_details_source.dart';
+import 'package:belik_coin/src/features/coin_details/domain/repo/coin_details_repo.dart';
 import 'package:belik_coin/src/features/coin_details/domain/usecases/remote/fetch_coin_case_r.dart';
 import 'package:belik_coin/src/features/coin_details/domain/usecases/remote/fetch_price_history_case_r.dart';
 import 'package:belik_coin/src/features/coin_details/presentation/bloc/coin_details_bloc.dart';
@@ -15,6 +17,9 @@ Future<void> initializeDependencies() async {
   //#region Coin Details
 
   injector.registerSingleton<CoinDetailsSource>(CoinDetailsSource(injector()));
+  injector.registerSingleton<CoinDetailsRepo>(CoinDetailsRepoImpl(
+    coinDetailsSource: injector(),
+  ));
 
   //#endregion
 

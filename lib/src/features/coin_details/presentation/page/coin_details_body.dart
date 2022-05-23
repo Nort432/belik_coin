@@ -4,6 +4,7 @@ import 'package:belik_coin/src/config/app_helpers/build_context_heleper.dart';
 import 'package:belik_coin/src/config/app_helpers/date_time_helper.dart';
 import 'package:belik_coin/src/features/coin_details/data/models/coin_trade_model.dart';
 import 'package:belik_coin/src/features/coin_details/domain/entities/coin_name_entity.dart';
+import 'package:belik_coin/src/features/coin_details/domain/entities/page_entity.dart';
 import 'package:belik_coin/src/features/coin_details/domain/entities/price_history_entity.dart';
 import 'package:belik_coin/src/features/coin_details/presentation/bloc/coin_details_bloc.dart';
 import 'package:charts_flutter/flutter.dart' hide TextStyle;
@@ -15,54 +16,62 @@ import '../widgets/price_chart_history_widget.dart';
 
 class CoinDetailsBody extends StatelessWidget {
   const CoinDetailsBody({
-    required this.dataChart,
-    required this.name,
-    this.stream,
+    required this.pageEntity,
     Key? key,
   }) : super(key: key);
 
-  final List<Series<PriceHistoryEntity, DateTime>> dataChart;
-  final Stream? stream;
-  final String name;
+  final PageEntity pageEntity;
 
   @override
   Widget build(BuildContext context) {
+    const space = SizedBox(
+      height: 10,
+    );
+    const padding = EdgeInsets.all(15);
     final locale = context.l10n;
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(title: Text(pageEntity.name),),
       body: SafeArea(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            StreamBuilder<dynamic>(
-              stream: stream,
-              builder: (context, snapshot) {
-                print('xxx');
-                if (snapshot.hasData) {
-                  final realData = CoinTradeModel.fromJson(
-                      jsonDecode(snapshot.data.toString())
-                          as Map<String, dynamic>);
+        child: Padding(
+          padding: padding,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Flexible(
+                child: StreamBuilder<dynamic>(
+                  stream: pageEntity.stream,
+                  builder: (context, snapshot) {
+                    print('xxx');
+                    if (snapshot.hasData) {
+                      final realData = CoinTradeModel.fromJson(
+                          jsonDecode(snapshot.data.toString())
+                              as Map<String, dynamic>);
 
-                  return CoinDataWidget(
-                    price: realData.price,
-                    date: realData.lastDateTime.toDateTime(),
-                    name: name,
-                  );
-                }
+                      return CoinDataWidget(
+                        price: realData.price,
+                        date: realData.lastDateTime.toDateTime(),
+                        name: pageEntity.name,
+                      );
+                    }
 
-                return const Center(child: CircularProgressIndicator());
-              },
-            ),
-            Flexible(
-                // height: 200,
+                    return const Center(child: CircularProgressIndicator());
+                  },
+                ),
+              ),
+              space,
+              Flexible(
+                flex: 8,
                 child: PriceChartHistoryWidget(
-                  dataChart,
+                  pageEntity.dataChart,
                   animate: true,
-                )),
-          ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
+        currentIndex: pageEntity.index,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: const Icon(Icons.attach_money),
@@ -80,19 +89,31 @@ class CoinDetailsBody extends StatelessWidget {
         onTap: (index) {
           switch (index) {
             case 0:
-              context
-                  .read<CoinDetailsBloc>()
-                  .add(CoinDetailsFetchCoin(CoinNameEntity().bitcoin));
+              pageEntity.index = index;
+              context.read<CoinDetailsBloc>().add(
+                    CoinDetailsFetchCoin(
+                      index: 0,
+                      coinName: CoinNameEntity().bitcoin,
+                    ),
+                  );
               break;
             case 1:
-              context
-                  .read<CoinDetailsBloc>()
-                  .add(CoinDetailsFetchCoin(CoinNameEntity().ethereum));
+              pageEntity.index = index;
+              context.read<CoinDetailsBloc>().add(
+                CoinDetailsFetchCoin(
+                  index: 1,
+                  coinName: CoinNameEntity().ethereum,
+                ),
+              );
               break;
             case 2:
-              context
-                  .read<CoinDetailsBloc>()
-                  .add(CoinDetailsFetchCoin(CoinNameEntity().dogecoin));
+              pageEntity.index = index;
+              context.read<CoinDetailsBloc>().add(
+                CoinDetailsFetchCoin(
+                  index: 2,
+                  coinName: CoinNameEntity().dogecoin,
+                ),
+              );
               break;
           }
         },

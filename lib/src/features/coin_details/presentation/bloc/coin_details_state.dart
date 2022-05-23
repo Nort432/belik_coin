@@ -18,15 +18,17 @@ class CoinDetailsLoaded extends CoinDetailsState {
   final Stream? stream;
   final List<Series<PriceHistoryEntity, DateTime>> dataChart;
   final String name;
+  final int index;
 
   const CoinDetailsLoaded({
     required this.stream,
     required this.dataChart,
     required this.name,
+    required this.index,
   });
 
   @override
-  List<Object?> get props => [dataChart, stream, name];
+  List<Object?> get props => [dataChart, stream, name, index];
 }
 
 class CoinDetailsError extends CoinDetailsState {

@@ -5,23 +5,15 @@ abstract class CoinDetailsEvent extends Equatable {
 }
 
 class CoinDetailsFetchCoin extends CoinDetailsEvent {
-  const CoinDetailsFetchCoin(this.coinName);
-
-  final String coinName;
-
-  @override
-  List<Object?> get props => [coinName];
-}
-
-class CoinDetailsFetchCoinTrade extends CoinDetailsEvent {
-  const CoinDetailsFetchCoinTrade({
+  const CoinDetailsFetchCoin({
     required this.coinName,
-    required this.dataChart,
+    required this.index,
   });
 
   final String coinName;
-  final List<Series<PriceHistoryEntity, DateTime>> dataChart;
+  final int index;
+
 
   @override
-  List<Object?> get props => [coinName, dataChart];
+  List<Object?> get props => [coinName, index];
 }

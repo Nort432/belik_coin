@@ -1,4 +1,5 @@
 import 'package:belik_coin/src/features/coin_details/domain/entities/coin_name_entity.dart';
+import 'package:belik_coin/src/features/coin_details/domain/entities/page_entity.dart';
 import 'package:belik_coin/src/features/coin_details/presentation/bloc/coin_details_bloc.dart';
 import 'package:belik_coin/src/features/coin_details/presentation/page/coin_details_body.dart';
 import 'package:belik_coin/src/features/coin_details/presentation/widgets/my_error_widget.dart';
@@ -16,7 +17,12 @@ class CoinDetailsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider<CoinDetailsBloc>(
       create: (context) => injector<CoinDetailsBloc>()
-        ..add(CoinDetailsFetchCoin(CoinNameEntity().bitcoin)),
+        ..add(
+          CoinDetailsFetchCoin(
+            index: 0,
+            coinName: CoinNameEntity().bitcoin,
+          ),
+        ),
       child: blocBuilder(context),
     );
   }
@@ -30,9 +36,12 @@ class CoinDetailsPage extends StatelessWidget {
 
         if (state is CoinDetailsLoaded) {
           return CoinDetailsBody(
-            dataChart: state.dataChart,
-            stream: state.stream,
-            name: state.name,
+            pageEntity: PageEntity(
+              dataChart: state.dataChart,
+              stream: state.stream,
+              name: state.name,
+              index: state.index,
+            ),
           );
         }
 

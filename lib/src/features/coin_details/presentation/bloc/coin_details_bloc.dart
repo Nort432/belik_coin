@@ -76,6 +76,7 @@ class CoinDetailsBloc extends Bloc<CoinDetailsEvent, CoinDetailsState> {
           stream: _channel?.stream,
           dataChart: [dataChart],
           name: event.coinName,
+          index: event.index,
         ),
       );
     }

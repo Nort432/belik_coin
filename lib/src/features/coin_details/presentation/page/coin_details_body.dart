@@ -27,6 +27,7 @@ class CoinDetailsBody extends StatelessWidget {
     );
     const padding = EdgeInsets.all(15);
     final locale = context.l10n;
+
     return Scaffold(
       appBar: AppBar(title: Text(pageEntity.name),),
       body: SafeArea(

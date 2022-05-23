@@ -2,5 +2,9 @@
   "coinDetails": "Coin Details",
   "symbol": "Symbol",
   "price": "Price",
-  "time": "Time"
+  "time": "Time",
+  "btc": "BTC",
+  "eth": "ETH",
+  "doge": "DOGE",
+  "usd": "/USD"
 }

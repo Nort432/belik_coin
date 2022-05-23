@@ -32,6 +32,7 @@ class CoinDetailsPage extends StatelessWidget {
           return CoinDetailsBody(
             dataChart: state.dataChart,
             stream: state.stream,
+            name: state.name,
           );
         }
 

@@ -1,10 +1,10 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:belik_coin/src/config/app_api/app_api.dart';
 import 'package:belik_coin/src/config/app_helpers/date_time_helper.dart';
 import 'package:belik_coin/src/core/states/data_state.dart';
 import 'package:belik_coin/src/features/coin_details/data/params/price_history_params.dart';
-import 'package:belik_coin/src/features/coin_details/domain/entities/coin_trade_entity.dart';
 import 'package:belik_coin/src/features/coin_details/domain/usecases/remote/fetch_price_history_case_r.dart';
 import 'package:bloc/bloc.dart';
 import 'package:charts_flutter/flutter.dart';
@@ -53,7 +53,7 @@ class CoinDetailsBloc extends Bloc<CoinDetailsEvent, CoinDetailsState> {
         json.encode(
           {
             "type": "hello",
-            "apikey": "F792B90B-1CF3-44FA-AA5C-F30B080C30D9",
+            "apikey": AppApi.apiKey,
             "heartbeat": false,
             "subscribe_data_type": ["trade"],
             "subscribe_filter_symbol_id": CoinNameEntity().id(event.coinName),
@@ -71,10 +71,13 @@ class CoinDetailsBloc extends Bloc<CoinDetailsEvent, CoinDetailsState> {
         data: priceHistory,
       );
 
-      return emit(CoinDetailsLoaded(
-        stream: _channel?.stream,
-        dataChart: [dataChart],
-      ));
+      return emit(
+        CoinDetailsLoaded(
+          stream: _channel?.stream,
+          dataChart: [dataChart],
+          name: event.coinName,
+        ),
+      );
     }
 
     if (dsPriceHistory is DataFailed) {

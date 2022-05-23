@@ -2,6 +2,10 @@
   "uk": [
     "symbol",
     "price",
-    "time"
+    "time",
+    "btc",
+    "eth",
+    "doge",
+    "usd"
   ]
 }

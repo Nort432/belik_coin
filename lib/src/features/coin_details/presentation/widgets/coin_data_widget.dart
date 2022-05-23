@@ -5,20 +5,26 @@ class CoinDataWidget extends StatelessWidget {
   const CoinDataWidget({Key? key,
   required this.price,
   required this.date,
+  required this.name,
   }) : super(key: key);
 
   final double price;
   final String date;
+  final String name;
+
+  final edgeAll10 = const EdgeInsets.all(10);
+  final borderRadius = const BorderRadius.all(Radius.circular(15));
 
   @override
   Widget build(BuildContext context) {
     final locale = context.l10n;
     return Container(
-      margin: EdgeInsets.all(10),
-      padding: EdgeInsets.all(10),
-      decoration: const BoxDecoration(
-        color: Colors.grey,
-        borderRadius: BorderRadius.all(Radius.circular(30)),
+      // margin: edgeAll10,
+      padding: edgeAll10,
+      decoration:  BoxDecoration(
+        border: Border.all(color: Colors.blueAccent,width: 2.5),
+        // color: Colors.grey,
+        borderRadius: borderRadius,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -26,7 +32,7 @@ class CoinDataWidget extends StatelessWidget {
           Column(
             children: [
               Text(locale.symbol),
-              Text('BTC/USD'),
+              Text('$name${locale.usd}'),
             ],
           ),
           Column(

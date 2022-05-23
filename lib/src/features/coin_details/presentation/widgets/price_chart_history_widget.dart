@@ -13,32 +13,43 @@ class PriceChartHistoryWidget extends StatelessWidget {
   final bool animate;
   static PriceHistoryEntity? workModel;
 
+  final edgeAll10 = const EdgeInsets.all(10);
+  final borderRadius = const BorderRadius.all(Radius.circular(15));
+
   const PriceChartHistoryWidget(this.seriesList,
       {Key? key, required this.animate})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return TimeSeriesChart(
-      seriesList,
-      animate: animate,
-      dateTimeFactory: const LocalDateTimeFactory(),
-      behaviors: [
-        LinePointHighlighter(symbolRenderer: CustomCircleSymbolRenderer())
-      ],
-      selectionModels: [
-        SelectionModelConfig(
-          changedListener: (SelectionModel model) {
-            if (model.hasDatumSelection) {
-              workModel = model.selectedDatum.first.datum;
-            }
-          },
-        )
-      ],
+    return Container(
+      padding: edgeAll10,
+      decoration:  BoxDecoration(
+        border: Border.all(color: Colors.blueAccent,width: 2.5),
+        // color: Colors.grey,
+        borderRadius: borderRadius,
+      ),
+      child: TimeSeriesChart(
+        seriesList,
+        animate: animate,
+        dateTimeFactory: const LocalDateTimeFactory(),
+        behaviors: [
+          LinePointHighlighter(symbolRenderer: CustomCircleSymbolRenderer())
+        ],
+        selectionModels: [
+          SelectionModelConfig(
+            changedListener: (SelectionModel model) {
+              if (model.hasDatumSelection) {
+                workModel = model.selectedDatum.first.datum;
+              }
+            },
+          )
+        ],
 
-      primaryMeasureAxis: NumericAxisSpec(
-        tickFormatterSpec: BasicNumericTickFormatterSpec.fromNumberFormat(
-          NumberFormat.compactSimpleCurrency(),),),
+        primaryMeasureAxis: NumericAxisSpec(
+          tickFormatterSpec: BasicNumericTickFormatterSpec.fromNumberFormat(
+            NumberFormat.compactSimpleCurrency(),),),
+      ),
     );
   }
 }

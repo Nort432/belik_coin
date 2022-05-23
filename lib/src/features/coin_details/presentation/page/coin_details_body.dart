@@ -5,9 +5,7 @@ import 'package:belik_coin/src/config/app_helpers/date_time_helper.dart';
 import 'package:belik_coin/src/features/coin_details/data/models/coin_trade_model.dart';
 import 'package:belik_coin/src/features/coin_details/domain/entities/coin_name_entity.dart';
 import 'package:belik_coin/src/features/coin_details/domain/entities/page_entity.dart';
-import 'package:belik_coin/src/features/coin_details/domain/entities/price_history_entity.dart';
 import 'package:belik_coin/src/features/coin_details/presentation/bloc/coin_details_bloc.dart';
-import 'package:charts_flutter/flutter.dart' hide TextStyle;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -41,7 +39,6 @@ class CoinDetailsBody extends StatelessWidget {
                 child: StreamBuilder<dynamic>(
                   stream: pageEntity.stream,
                   builder: (context, snapshot) {
-                    print('xxx');
                     if (snapshot.hasData) {
                       final realData = CoinTradeModel.fromJson(
                           jsonDecode(snapshot.data.toString())

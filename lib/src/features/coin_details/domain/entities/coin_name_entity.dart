@@ -5,11 +5,11 @@ class CoinNameEntity {
 
    List<String> id(String name) {
      switch(name) {
-       case 'COINBASE_SPOT_BTC_USD':
+       case 'BTC':
          return ["COINBASE_SPOT_BTC_USD"];
-       case 'COINBASE_SPOT_ETH_USD':
+       case 'ETH':
          return ["COINBASE_SPOT_ETH_USD"];
-       case 'COINBASE_SPOT_DOGE_USD':
+       case 'DOGE':
          return ["COINBASE_SPOT_DOGE_USD"];
      }
      return ["COINBASE_SPOT_BTC_USD"];

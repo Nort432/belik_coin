@@ -18,9 +18,9 @@ class CoinDetailsPage extends StatelessWidget {
     return BlocProvider<CoinDetailsBloc>(
       create: (context) => injector<CoinDetailsBloc>()
         ..add(
-          CoinDetailsFetchCoin(
+          const CoinDetailsFetchCoin(
             index: 0,
-            coinName: CoinNameEntity().bitcoin,
+            coinName: CoinNameEntity.bitcoin,
           ),
         ),
       child: blocBuilder(context),
@@ -33,7 +33,6 @@ class CoinDetailsPage extends StatelessWidget {
         if (state is CoinDetailsLoading) {
           return const LoadingWidget();
         }
-
         if (state is CoinDetailsLoaded) {
           return CoinDetailsBody(
             pageEntity: PageEntity(
@@ -44,7 +43,6 @@ class CoinDetailsPage extends StatelessWidget {
             ),
           );
         }
-
         if (state is CoinDetailsError) {
           return MyErrorWidget(state.errorMessage);
         }

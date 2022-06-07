@@ -1,15 +1,15 @@
 class CoinNameEntity {
-  final String bitcoin = 'BTC';
-  final String ethereum = 'ETH';
-  final String dogecoin = 'DOGE';
+  static const String bitcoin = 'BTC';
+  static const String ethereum = 'ETH';
+  static const String dogecoin = 'DOGE';
 
-   List<String> id(String name) {
+   static List<String> id(String name) {
      switch(name) {
-       case 'BTC':
+       case bitcoin:
          return ["COINBASE_SPOT_BTC_USD"];
-       case 'ETH':
+       case ethereum:
          return ["COINBASE_SPOT_ETH_USD"];
-       case 'DOGE':
+       case dogecoin:
          return ["COINBASE_SPOT_DOGE_USD"];
      }
      return ["COINBASE_SPOT_BTC_USD"];

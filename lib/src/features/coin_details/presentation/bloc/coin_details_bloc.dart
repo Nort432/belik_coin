@@ -36,13 +36,13 @@ class CoinDetailsBloc extends Bloc<CoinDetailsEvent, CoinDetailsState> {
     emit(CoinDetailsLoading());
 
     final today = DateTime.now();
-    final yesterday = DateTime(today.year - 1, today.month, today.day);
+    final lastYear = DateTime(today.year - 1, today.month, today.day);
 
     final params = PriceHistoryParams(
       assetIdBase: event.coinName,
       periodId: '10DAY',
       timeEnd: today.toDateAPI(),
-      timeStart: yesterday.toDateAPI(),
+      timeStart: lastYear.toDateAPI(),
     );
     final dsPriceHistory = await fetchPriceHistoryCaseR(params);
 
@@ -56,7 +56,7 @@ class CoinDetailsBloc extends Bloc<CoinDetailsEvent, CoinDetailsState> {
             "apikey": AppApi.apiKey,
             "heartbeat": false,
             "subscribe_data_type": ["trade"],
-            "subscribe_filter_symbol_id": CoinNameEntity().id(event.coinName),
+            "subscribe_filter_symbol_id": CoinNameEntity.id(event.coinName),
           },
         ),
       );

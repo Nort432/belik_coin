@@ -26,8 +26,8 @@ class PriceChartHistoryWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: edgeAll10,
-      decoration:  BoxDecoration(
-        border: Border.all(color: Colors.blueAccent,width: 2.5),
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.blueAccent, width: 2.5),
         // color: Colors.grey,
         borderRadius: borderRadius,
       ),
@@ -47,42 +47,49 @@ class PriceChartHistoryWidget extends StatelessWidget {
             },
           )
         ],
-
         primaryMeasureAxis: NumericAxisSpec(
           tickFormatterSpec: BasicNumericTickFormatterSpec.fromNumberFormat(
-            NumberFormat.compactSimpleCurrency(),),),
+            NumberFormat.compactSimpleCurrency(),
+          ),
+        ),
       ),
     );
   }
 }
+
 class CustomCircleSymbolRenderer extends CircleSymbolRenderer {
   @override
-  void paint(ChartCanvas canvas,
-      Rectangle<num> bounds, {
-        List<int>? dashPattern,
-        Color? fillColor,
-        FillPatternType? fillPattern,
-        Color? strokeColor,
-        double? strokeWidthPx,
-      }) {
-    super.paint(canvas, bounds,
-        dashPattern: dashPattern,
-        fillColor: fillColor,
-        strokeColor: strokeColor,
-        strokeWidthPx: strokeWidthPx);
+  void paint(
+    ChartCanvas canvas,
+    Rectangle<num> bounds, {
+    List<int>? dashPattern,
+    Color? fillColor,
+    FillPatternType? fillPattern,
+    Color? strokeColor,
+    double? strokeWidthPx,
+  }) {
+    super.paint(
+      canvas,
+      bounds,
+      dashPattern: dashPattern,
+      fillColor: fillColor,
+      strokeColor: strokeColor,
+      strokeWidthPx: strokeWidthPx,
+    );
+
     canvas.drawRect(
       Rectangle(bounds.left - 5, bounds.top - 30, bounds.width * 9.5,
           bounds.height * 5),
       fill: Color.fromHex(code: '#808080'),
     );
+
     var currentData = PriceChartHistoryWidget.workModel;
     var textStyle = ts.TextStyle();
     textStyle.color = Color.white;
     textStyle.fontSize = 15;
     canvas.drawText(
         te.TextElement(
-          '${currentData?.rateClose.toStringAsFixed(2)}\n${currentData
-              ?.timeClose.toDate()}',
+          '${currentData?.rateClose.toStringAsFixed(2)}\n${currentData?.timeClose.toDate()}',
           style: textStyle,
         ),
         (bounds.left).round(),

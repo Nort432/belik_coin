@@ -89,27 +89,27 @@ class CoinDetailsBody extends StatelessWidget {
             case 0:
               pageEntity.index = index;
               context.read<CoinDetailsBloc>().add(
-                    CoinDetailsFetchCoin(
+                    const CoinDetailsFetchCoin(
                       index: 0,
-                      coinName: CoinNameEntity().bitcoin,
+                      coinName: CoinNameEntity.bitcoin,
                     ),
                   );
               break;
             case 1:
               pageEntity.index = index;
               context.read<CoinDetailsBloc>().add(
-                CoinDetailsFetchCoin(
+                const CoinDetailsFetchCoin(
                   index: 1,
-                  coinName: CoinNameEntity().ethereum,
+                  coinName: CoinNameEntity.ethereum,
                 ),
               );
               break;
             case 2:
               pageEntity.index = index;
               context.read<CoinDetailsBloc>().add(
-                CoinDetailsFetchCoin(
+                const CoinDetailsFetchCoin(
                   index: 2,
-                  coinName: CoinNameEntity().dogecoin,
+                  coinName: CoinNameEntity.dogecoin,
                 ),
               );
               break;
